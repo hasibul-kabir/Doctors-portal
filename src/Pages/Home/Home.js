@@ -8,10 +8,11 @@ import Services from './Services';
 import AppointmentLink from './AppointmentLink';
 import TestimonialLink from './TestimonialLink';
 import ContactUs from './ContactUs';
+import Footer from '../../Shared/Footer';
 
 const Home = () => {
     return (
-        <div className='lg:mx-16 mx-8'>
+        <div className='max-w-6xl lg:mx-auto mx-6'>
             <section id='banner'>
                 <Banner />
                 <div className='flex flex-col lg:flex-row gap-5'>
@@ -36,6 +37,7 @@ const Home = () => {
             <section>
                 <ContactUs />
             </section>
+            <Footer />
         </div>
     )
 }
