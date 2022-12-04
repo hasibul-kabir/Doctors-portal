@@ -1,7 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
+import auth from '../Firebase.config';
+import { Link } from 'react-router-dom';
+
 
 const NavBar = () => {
+    const [user] = useAuthState(auth);
+    const [signOut] = useSignOut(auth);
     return (
         <div className="navbar bg-base-100 lg:px-16 px-8 max-w-7xl mx-auto">
             <div className="navbar-start">
@@ -15,7 +20,13 @@ const NavBar = () => {
                         <li><Link to='about'>About</Link></li>
                         <li><Link to='reviews'>Reviews</Link></li>
                         <li><Link to='contact'>Contact Us</Link></li>
-                        <li><Link to='login'>Login</Link></li>
+                        {
+                            user ?
+                                // <li><p>{user?.displayName}</p></li>
+                                <li onClick={() => signOut()}><p>Logout</p></li>
+                                :
+                                <li><Link to='login'>Login</Link></li>
+                        }
                     </ul>
                 </div>
                 <a className="btn btn-ghost normal-case text-xl">Doctors Portal</a>
@@ -27,7 +38,15 @@ const NavBar = () => {
                     <li><Link to='about'>About</Link></li>
                     <li><Link to='reviews'>Reviews</Link></li>
                     <li><Link to='contact'>Contact Us</Link></li>
-                    <li><Link to='login'>Login</Link></li>
+                    {
+                        user ?
+                            <li className='tooltip tooltip-bottom' data-tip={user?.displayName ? user?.displayName : 'logout'} onClick={() => signOut()} >
+                                {/* <p className='font-bold'>{user.displayName.length > 5 ? user.displayName.slice(0, 5) + '...' : user.displayName + 'v'}</p> */}
+                                <p className='font-bold'>Logout</p>
+                            </li>
+                            :
+                            <li><Link to='login'>Login</Link></li>
+                    }
                 </ul>
             </div>
         </div>

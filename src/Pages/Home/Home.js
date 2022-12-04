@@ -10,7 +10,9 @@ import TestimonialLink from './TestimonialLink';
 import ContactUs from './ContactUs';
 import Footer from '../../Shared/Footer';
 
+
 const Home = () => {
+
     return (
         <div className='max-w-6xl lg:mx-auto mx-6'>
             <section id='banner'>

@@ -14,8 +14,8 @@ const AppointmentBookingModal = ({ selectedAppointment, selectedDate }) => {
                         <input type="text" className="input w-full max-w-xs" value={format(selectedDate, 'PP')} disabled />
                         <select className="select w-full max-w-xs">
                             {
-                                slots.map((slot) =>
-                                    <option>{slot}</option>
+                                slots.map((slot, index) =>
+                                    <option key={index}>{slot}</option>
                                 )
                             }
                         </select>
