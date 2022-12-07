@@ -7,11 +7,12 @@ const AvailableAppointments = ({ selectedDate }) => {
     const [availableAppointments, setAvailableAppointments] = useState([]);
     const [selectedAppointment, setSelectedAppointment] = useState(null);
 
+    const date = format(selectedDate, 'PP');
     useEffect(() => {
-        fetch('http://localhost:5000/appointments')
+        fetch(`http://localhost:5000/available?date=${date}`)
             .then(response => response.json())
             .then(data => setAvailableAppointments(data));
-    }, [])
+    }, [date])
 
     return (
         <div className=' my-10'>
@@ -25,7 +26,7 @@ const AvailableAppointments = ({ selectedDate }) => {
                 }
             </div>
             {
-                selectedAppointment && <AppointmentBookingModal selectedAppointment={selectedAppointment} selectedDate={selectedDate} />
+                selectedAppointment && <AppointmentBookingModal selectedAppointment={selectedAppointment} setSelectedAppointment={setSelectedAppointment} selectedDate={selectedDate} />
             }
         </div>
     )
