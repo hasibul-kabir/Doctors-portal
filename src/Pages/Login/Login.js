@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase.config';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { FcGoogle } from 'react-icons/fc';
+import useAuthToken from '../../Hooks/useAuthToken';
 
 
 const Login = () => {
@@ -13,6 +14,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [validationError, setValidationError] = useState(false);
+    const [token] = useAuthToken(user || emailAuthUser);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,7 +28,11 @@ const Login = () => {
         }
     }
 
-    if (user || emailAuthUser) {
+    // if (user || emailAuthUser) {
+    //     navigate(location.state?.from ? location.state.from : '/', { replace: true })
+    // }
+
+    if (token) {
         navigate(location.state?.from ? location.state.from : '/', { replace: true })
     }
 

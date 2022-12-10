@@ -3,6 +3,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase.config';
+import useAuthToken from '../../Hooks/useAuthToken';
 
 
 
@@ -21,6 +22,7 @@ const Signup = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [token] = useAuthToken(user);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -41,7 +43,8 @@ const Signup = () => {
         return <p>{updateError.message}</p>
     }
 
-    if (!error && !updateError && user) {
+
+    if (token) {
         navigate(location.state?.from ? location.state.from : '/', { replace: true })
     }
 
