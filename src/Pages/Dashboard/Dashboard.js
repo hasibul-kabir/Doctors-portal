@@ -28,14 +28,19 @@ const Dashboard = () => {
                     {/* <!-- Page content here --> */}
                     <Outlet />
                 </div>
-                <div className="drawer-side">
+                <div className="drawer-side shadow-2xl bg-base-100">
                     <label htmlFor="dashboard-collapse" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-auto bg-base-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
                         <li><Link to='/dashboard'>My Appointments</Link></li>
                         <li><Link to='/dashboard/reports'>My Reports</Link></li>
                         {
-                            admin && <li><Link to='/dashboard/users'>All Users</Link></li>
+                            admin &&
+                            <>
+                                <li><Link to='/dashboard/users'>All users</Link></li>
+                                <li><Link to='/dashboard/adddoctor'>Add a doctor</Link></li>
+                                <li><Link to='/dashboard/managedoctors'>Manage doctors</Link></li>
+                            </>
                         }
                     </ul>
 

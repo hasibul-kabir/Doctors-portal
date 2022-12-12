@@ -4,6 +4,7 @@ import AdminOutlets from './Outlets/AdminOutlets';
 import PrivateOutlets from './Outlets/PrivateOutlets';
 import Appoinment from './Pages/Appoinment/Appoinment';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import AddDoctor from './Pages/Dashboard/AddDoctor';
 import MyAppointments from './Pages/Dashboard/MyAppointments';
 import MyReports from './Pages/Dashboard/MyReports';
 import Users from './Pages/Dashboard/Users';
@@ -11,6 +12,7 @@ import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
 import NavBar from './Shared/NavBar';
+import ManageDoctors from './Pages/Dashboard/ManageDoctors';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
             <Route path='reports' element={<MyReports />} />
             <Route element={<AdminOutlets />}>
               <Route path='users' element={<Users />} />
+              <Route path='adddoctor' element={<AddDoctor />} />
+              <Route path='managedoctors' element={<ManageDoctors />} />
             </Route>
           </Route>
         </Route>
