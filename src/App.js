@@ -13,6 +13,7 @@ import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
 import NavBar from './Shared/NavBar';
 import ManageDoctors from './Pages/Dashboard/ManageDoctors';
+import Payment from './Pages/Dashboard/Payment/Payment';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path='appointment' element={<Appoinment />} />
           <Route path='dashboard' element={<Dashboard />}>
             <Route index element={<MyAppointments />} />
+            <Route path='payment/:id' element={<Payment />} />
             <Route path='reports' element={<MyReports />} />
             <Route element={<AdminOutlets />}>
               <Route path='users' element={<Users />} />

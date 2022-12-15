@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const AppointmentBookingModal = ({ selectedAppointment, setSelectedAppointment, selectedDate }) => {
     const [loading, setLoading] = useState(false);
-    const { name, slots } = selectedAppointment;
+    const { name, slots, cost } = selectedAppointment;
     const [user] = useAuthState(auth);
     const [slot, setSlot] = useState(slots[0]);
     const [phone, setPhone] = useState('');
@@ -25,13 +25,13 @@ const AppointmentBookingModal = ({ selectedAppointment, setSelectedAppointment, 
                 patient: user?.displayName,
                 email: user?.email,
                 phone: phone,
-                slot: slot
+                slot: slot,
+                cost: cost
             }),
 
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 setLoading(false);
                 setSelectedAppointment(false);
                 if (data.success) {
@@ -46,7 +46,6 @@ const AppointmentBookingModal = ({ selectedAppointment, setSelectedAppointment, 
 
             })
             .catch((error) => {
-                console.log(error);
                 setLoading(false);
                 toast.error("Failed to book appointment!", {
                     position: toast.POSITION.TOP_CENTER

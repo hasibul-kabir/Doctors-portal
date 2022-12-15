@@ -1,5 +1,6 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../Firebase.config';
 
@@ -10,7 +11,7 @@ const Doctors = () => {
     const [dEmail, setDemail] = useState('');
     const [file, setFile] = useState(null);
     const [workArea, setWorkArea] = useState(treatments[0]);
-    const [user] = useAuthState(auth);
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -48,7 +49,14 @@ const Doctors = () => {
                                 image: result.data.url
                             })
                         })
-                            .then((res) => res.json())
+                            .then((res) => {
+                                if (res.status === 401 || res.status === 403) {
+                                    signOut(auth);
+                                    navigate('/');
+                                    localStorage.removeItem('access-token');
+                                }
+                                return res.json()
+                            })
                             .then((data) => {
                                 setLoading(false);
                                 setName('');
