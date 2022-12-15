@@ -22,27 +22,32 @@ const NavBar = () => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to='/'>Home</Link></li>
                         <li><Link to='/appointment'>Appointment</Link></li>
-                        <li><Link to='/about'>About</Link></li>
+                        {/* <li><Link to='/about'>About</Link></li>
                         <li><Link to='/reviews'>Reviews</Link></li>
-                        <li><Link to='/contact'>Contact Us</Link></li>
+                        <li><Link to='/contact'>Contact Us</Link></li> */}
                         {
                             user ?
-                                // <li><p>{user?.displayName}</p></li>
-                                <li onClick={() => signOut()}><p>Logout</p></li>
+                                <>
+                                    <li><Link to='/dashboard'>Dashboard</Link></li>
+                                    <li className='tooltip tooltip-bottom' data-tip={user?.displayName ? user?.displayName : 'logout'} onClick={handleLogout} >
+                                        {/* <p className='font-bold'>{user.displayName.length > 5 ? user.displayName.slice(0, 5) + '...' : user.displayName + 'v'}</p> */}
+                                        <p className='font-bold'>Logout</p>
+                                    </li>
+                                </>
                                 :
-                                <li><Link to='/login'>Login</Link></li>
+                                <li><Link to='login'>Login</Link></li>
                         }
                     </ul>
                 </div>
                 <a className="btn btn-ghost normal-case text-xl">Doctors Portal</a>
             </div>
-            <div className="navbar-end hidden lg:flex lg:w-fit">
+            <div className="navbar-end hidden lg:flex lg:w-full">
                 <ul className="menu menu-horizontal p-0">
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/appointment'>Appointment</Link></li>
-                    <li><Link to='/about'>About</Link></li>
+                    {/* <li><Link to='/about'>About</Link></li>
                     <li><Link to='/reviews'>Reviews</Link></li>
-                    <li><Link to='/contact'>Contact Us</Link></li>
+                    <li><Link to='/contactus'>Contact Us</Link></li> */}
                     {
                         user ?
                             <>

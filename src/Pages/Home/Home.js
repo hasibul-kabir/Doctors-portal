@@ -36,7 +36,7 @@ const Home = () => {
                 <TestimonialLink />
             </section>
 
-            <section>
+            <section id='contactus'>
                 <ContactUs />
             </section>
             <Footer />
